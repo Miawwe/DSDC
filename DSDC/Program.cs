@@ -20,11 +20,9 @@ namespace DSDC
             IntPtr Base = Process.GetProcessesByName("DarkSoulsRemastered").FirstOrDefault().MainModule.BaseAddress + 0x01C04E00;
             VAMemory vam = new VAMemory("DarkSoulsRemastered");
 
-            WindowsMediaPlayer myplayer = new WindowsMediaPlayer();
-
-            if (!File.Exists($"{exePath}\\deaths.txt"))
+            if (File.Exists($"{exePath}\\deaths.txt"))
             {
-
+                numOfDeaths = int.Parse(System.IO.File.ReadAllText($@"{exePath}\\deaths.txt"));
             }
 
             while (true)
@@ -37,14 +35,11 @@ namespace DSDC
 
                 if (vam.ReadInt32(Basefifth) == 1 && isDead == false)
                 {
-                    isDead = true;
                     //Code to run when you die
-
+                    isDead = true;
                     numOfDeaths += 1;
 
                     System.IO.File.WriteAllText($@"{exePath}\\deaths.txt", numOfDeaths.ToString());
-
-                    //Console.WriteLine("git gud");
                 }
 
                 if (vam.ReadInt32(Basefifth) == 0 && isDead == true)
