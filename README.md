@@ -7,7 +7,7 @@ Dark Souls Remaster death counter using memory reading, will add support for oth
 ## TODO
 
 - [x] Get this up and running
-- [ ] Save deaths into TXT
+- [x] Save deaths into TXT
 - [ ] Some ways to interact with it i guess
 - [ ] Make it WFA, consoles are ew
 - [ ] Get deaths from save file ((hard asf to parse this data))
