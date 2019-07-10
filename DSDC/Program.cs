@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.IO;
 using WMPLib;
 
 namespace DSDC
@@ -13,12 +14,18 @@ namespace DSDC
     {
         static public int numOfDeaths = 0;
         static public bool isDead = false;
+        static public string exePath = Path.GetDirectoryName(Path.GetFullPath("DSDC.exe"));
         static void Main(string[] args)
         {
             IntPtr Base = Process.GetProcessesByName("DarkSoulsRemastered").FirstOrDefault().MainModule.BaseAddress + 0x01C04E00;
             VAMemory vam = new VAMemory("DarkSoulsRemastered");
 
             WindowsMediaPlayer myplayer = new WindowsMediaPlayer();
+
+            if (!File.Exists($"{exePath}\\deaths.txt"))
+            {
+
+            }
 
             while (true)
             {
@@ -35,8 +42,7 @@ namespace DSDC
 
                     numOfDeaths += 1;
 
-                    myplayer.URL = "bruh.mp3";
-                    myplayer.controls.play();
+                    System.IO.File.WriteAllText($@"{exePath}\\deaths.txt", numOfDeaths.ToString());
 
                     //Console.WriteLine("git gud");
                 }
