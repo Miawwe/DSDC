@@ -20,7 +20,7 @@ namespace DSDC
             IntPtr Base = Process.GetProcessesByName("DarkSoulsRemastered").FirstOrDefault().MainModule.BaseAddress + 0x01C04E00; //Get base address and add pointer for the death screen
             VAMemory vam = new VAMemory("DarkSoulsRemastered"); 
 
-            if (File.Exists($"{exePath}\\deaths.txt")) //Check if file with deaths exist, if not, set the numbers of deaths to 0
+            if (File.Exists($"{exePath}\\deaths.txt")) //Check if file with deaths exist, if not, set the number of deaths to 0
             {
                 numOfDeaths = int.Parse(System.IO.File.ReadAllText($@"{exePath}\\deaths.txt")); //Store all text from the file and convert it to an integer
             } else
